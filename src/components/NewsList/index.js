@@ -6,6 +6,12 @@ class NewsList extends Component {
   render() {
     const { data } = this.props;
 
+    if(data.length === 0) {
+      return (
+        <div className="alert alert-info my-2">Loading news. Please wait a second...</div>
+      );
+    }
+
     this.newsElements = data.map((article, index) =>
       <NewsPreview key={index} article={article} />
     );

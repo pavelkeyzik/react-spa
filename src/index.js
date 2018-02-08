@@ -11,13 +11,15 @@ class App extends Component {
   render() {
     return [
       <Header key="0" />,
-      <div key="1" className="row container mx-auto my-2 px-2">
-        <main className="col-9">
-          <section className="articles">
-            <NewsList />
-          </section>
-        </main>
-        <Aside />
+      <div key="1" className="container mx-auto my-2 px-0">
+        <div className="row">
+          <main className="col-9">
+            <section className="articles">
+              <NewsList />
+            </section>
+          </main>
+          <Aside />
+        </div>
       </div>,
       <Footer key="3" />
     ];

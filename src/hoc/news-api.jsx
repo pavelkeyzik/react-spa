@@ -1,6 +1,9 @@
 import React from 'react';
 import axios from 'axios';
 
+let CancelToken = axios.CancelToken;
+let cancelRequest;
+
 function newsApi(Component, apiUrl) {
   class NewsApi extends React.Component {
     state = {
@@ -11,8 +14,14 @@ function newsApi(Component, apiUrl) {
       this.get();
     }
 
+    componentWillUnmount() {
+      cancelRequest();
+    }
+
     get = () => {
-      axios.get(apiUrl)
+      axios.get(apiUrl, {
+        cancelToken: new CancelToken((c) => cancelRequest = c)
+      })
         .then((response) => response.data.articles)
         .then((data) => this.setState({ data }));
     }
